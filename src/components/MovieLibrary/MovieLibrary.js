@@ -1,20 +1,24 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { fetchTopRatedMovies } from "../../redux/actions/actions";
-import { getMovies } from "../../redux/selectors";
-
 import logo from "../../assets/logo.svg";
 import "./MovieLibrary.css";
 
+import { getMovies } from "../../redux/selectors";
 import { MoviesList } from "../MoviesList/MoviesList";
+import { getMoviesList } from "../../redux/actions/moviesSlice";
 
 export const MovieLibrary = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(fetchTopRatedMovies());
-  }, []);
-  const movies = useSelector(getMovies);
+    dispatch(getMoviesList());
+  }, [dispatch]);
+
+  const moviesList = useSelector(getMovies);
+  const { list } = moviesList;
+  const movies = [...list];
+
   return (
     <div className="MovieLibrary">
       <header className="ML-header">

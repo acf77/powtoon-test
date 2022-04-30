@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import TMDBImage from "../../assets/TMDBImage";
 import { ExpandedMovieItem } from "../ExpandedMovieItem/ExpandedMovieItem";
 import { MovieListItem } from "../MovieListItem/MovieListItem";
 import { SortingOptions } from "../SortingOptions/SortingOptions";

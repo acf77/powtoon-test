@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Modal } from "react-bootstrap";
 import TMDBImage from "../../assets/TMDBImage";
 import { ExpandedMovieItem } from "../ExpandedMovieItem/ExpandedMovieItem";
 import { MovieCard, MovieCardTitle } from "./styles";
@@ -9,7 +8,6 @@ export const MovieListItem = ({ movie, isSelected, onSelect }) => {
 
   const [modalShow, setModalShow] = useState(false);
 
-  const handleClick = () => onSelect(movie);
   const handleDismiss = () => onSelect(null);
 
   const handleOpenModal = () => setModalShow(true);
