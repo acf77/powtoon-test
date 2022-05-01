@@ -5,20 +5,20 @@
 
 # Home Assignment - Movies
 
-
-
 #### TASK 1
 Convert UI of movie list to boxes showing the movie posters (Netflix style). Change onClick UI to show movie details in a modal.
 No specific styling is required, this is your chance to show-off your CSS skills.
 
-
+![powtoon1](https://user-images.githubusercontent.com/61336548/166162005-307c4509-229d-4a40-bf0e-e356d031b9f9.gif)
 
 Done! ✅
 
 
-
 #### TASK 2
 Implement the sorting options on the “Sort” pull-down menu.
+
+![powtoon2](https://user-images.githubusercontent.com/61336548/166163018-fe2ec764-a339-4b2e-b653-978f021d9dcb.gif)
+
 
 Done! ✅
 
@@ -33,6 +33,8 @@ Done! ✅
 #### TASK 4
 
 Implement “infinite-scroll”, so more movies are added to the list as the user scrolls down.
+
+![powtoon3](https://user-images.githubusercontent.com/61336548/166163194-20072cc3-5c11-4b23-837d-fd33c9a876cd.gif)
 
 Done! ✅
 
