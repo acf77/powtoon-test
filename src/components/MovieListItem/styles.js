@@ -7,7 +7,11 @@ export const MovieCard = styled.div`
   margin: 1%;
   padding: 1%;
   cursor: pointer;
-  background-color: #222;
+  background-color: #111;
+
+  &:hover {
+    background-color: #222;
+  }
 `;
 
 export const MovieCardTitle = styled.p`

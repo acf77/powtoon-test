@@ -1,6 +1,15 @@
 import { Modal } from "react-bootstrap";
 import TMDBImage from "../../assets/TMDBImage";
 
+import {
+  Container,
+  ModalTitle,
+  ModalRank,
+  ModalDescription,
+  ModalImage,
+  ModalBackdrop,
+} from "./styles";
+
 export const ExpandedMovieItem = ({
   movie: {
     title,
@@ -9,23 +18,25 @@ export const ExpandedMovieItem = ({
     overview,
     vote_average,
     vote_count,
+    backdrop_path,
+    release_date,
   },
   show,
   onHide,
 }) => (
   <Modal show={show} onHide={onHide}>
-    <TMDBImage src={poster_path} className="poster" />
-    <div className="description">
-      <h2>
-        {title}({original_title})
-      </h2>
-      <div>
-        <h4>Rank(votes count)</h4>:{" "}
-        <span>
-          {vote_average}({vote_count})
-        </span>
+    <Container>
+      <ModalBackdrop lazy src={backdrop_path} />
+      <ModalImage src={poster_path} />
+      <div className="description">
+        <ModalTitle>
+          {title} ({original_title})
+        </ModalTitle>
+        <ModalRank>
+          {vote_average} ({vote_count} votes) | {release_date}
+        </ModalRank>
+        <ModalDescription>{overview}</ModalDescription>
       </div>
-      <span>{overview}</span>
-    </div>
+    </Container>
   </Modal>
 );

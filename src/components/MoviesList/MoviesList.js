@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useDispatch, useSelector } from "react-redux";
-import { getMoreMoviesList } from "../../redux/actions/InfiniteScrollSlice";
+import { sortFunction } from "../../helpers/sortFunction";
+import { getMoreMoviesList } from "../../redux/InfiniteScrollSlice";
 
 import { ExpandedMovieItem } from "../ExpandedMovieItem/ExpandedMovieItem";
 import { MovieListItem } from "../MovieListItem/MovieListItem";
@@ -22,35 +23,7 @@ export const MoviesList = ({ movies }) => {
 
   const handleSortingChange = (event) => {
     setSortingType(event.target.value);
-
-    switch (event.target.value) {
-      case "name_asc":
-        movies.sort((a, b) => {
-          let x = a.original_title;
-          let y = b.original_title;
-          return x === y ? 0 : x > y ? 1 : -1;
-        });
-        break;
-      case "name_desc":
-        movies.sort((a, b) => {
-          let x = a.original_title;
-          let y = b.original_title;
-          return x === y ? 0 : x < y ? 1 : -1;
-        });
-        break;
-      case "rating_high":
-        movies.sort((a, b) => {
-          return b.vote_average - a.vote_average;
-        });
-        break;
-      case "rating_low":
-        movies.sort((a, b) => {
-          return a.vote_average - b.vote_average;
-        });
-        break;
-      default:
-        return;
-    }
+    sortFunction(event, movies);
   };
 
   const handleOpenModal = () => {

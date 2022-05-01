@@ -1,38 +1,56 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import logo from "../../assets/logo.svg";
-import "./MovieLibrary.css";
+import {
+  MovieLibraryCard,
+  MovieLibraryContainer,
+  MovieLibraryContainerImage,
+  MovieLibraryContainerTitle,
+  MovieLibraryContainerSubtitle,
+} from "./styles";
 
 import { getMoreMovies, getMovies } from "../../redux/selectors";
 import { MoviesList } from "../MoviesList/MoviesList";
-import { getMoviesList } from "../../redux/actions/moviesSlice";
+import { getMoviesList } from "../../redux/moviesSlice";
 
 export const MovieLibrary = () => {
   const dispatch = useDispatch();
-  const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(() => {
     dispatch(getMoviesList());
   }, []);
 
-  const { list } = useSelector(getMovies);
+  const initalMovies = useSelector(getMovies);
   const { moreMoviesList } = useSelector(getMoreMovies);
 
-  // const movies = [...list];
-
-  const moviesList = moreMoviesList.length > 20 ? moreMoviesList : list;
+  const moviesList =
+    moreMoviesList.length > 20 ? moreMoviesList : initalMovies.list;
   const movies = [...moviesList];
 
+  const randomNumber = Math.floor(Math.random() * (20 - 0) + 0);
+
   return (
-    <div className="MovieLibrary">
-      <header className="ML-header">
-        <img src={logo} className="ML-logo" alt="logo" />
-        <h1 className="ML-title">Movies</h1>
-      </header>
-      <div className="ML-intro">
-        {movies.length && <MoviesList movies={movies} />}
-      </div>
-    </div>
+    <MovieLibraryContainer>
+      {initalMovies.status === "loading" ? (
+        <span>Loading...</span>
+      ) : (
+        movies.length && (
+          <MovieLibraryCard>
+            <MovieLibraryContainerTitle>
+              {initalMovies.list[randomNumber].original_title}
+            </MovieLibraryContainerTitle>
+            <MovieLibraryContainerSubtitle>
+              Rating {initalMovies.list[randomNumber].vote_average} (
+              {initalMovies.list[randomNumber].release_date.slice(0, 4)})
+            </MovieLibraryContainerSubtitle>
+            <MovieLibraryContainerImage
+              loading="lazy"
+              src={initalMovies.list[randomNumber].backdrop_path}
+            />
+          </MovieLibraryCard>
+        )
+      )}
+      {movies.length && <MoviesList movies={movies} />}
+    </MovieLibraryContainer>
   );
 };

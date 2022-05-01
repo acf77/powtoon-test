@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import moviesReducer from "./actions/moviesSlice";
-import moreMoviesReducer from "./actions/InfiniteScrollSlice";
+import moviesReducer from "./moviesSlice";
+import moreMoviesReducer from "./InfiniteScrollSlice";
 
 export const store = configureStore({
   reducer: {
