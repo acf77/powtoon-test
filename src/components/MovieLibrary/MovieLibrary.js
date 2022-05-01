@@ -1,23 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import logo from "../../assets/logo.svg";
 import "./MovieLibrary.css";
 
-import { getMovies } from "../../redux/selectors";
+import { getMoreMovies, getMovies } from "../../redux/selectors";
 import { MoviesList } from "../MoviesList/MoviesList";
 import { getMoviesList } from "../../redux/actions/moviesSlice";
 
 export const MovieLibrary = () => {
   const dispatch = useDispatch();
+  const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(() => {
     dispatch(getMoviesList());
-  }, [dispatch]);
+  }, []);
 
-  const moviesList = useSelector(getMovies);
-  const { list } = moviesList;
-  const movies = [...list];
+  const { list } = useSelector(getMovies);
+  const { moreMoviesList } = useSelector(getMoreMovies);
+
+  // const movies = [...list];
+
+  const moviesList = moreMoviesList.length > 20 ? moreMoviesList : list;
+  const movies = [...moviesList];
 
   return (
     <div className="MovieLibrary">

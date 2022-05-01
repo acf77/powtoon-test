@@ -16,14 +16,14 @@ const moviesSlice = createSlice({
   },
 
   extraReducers: {
-    [getMoviesList.pending]: (state, action) => {
+    [getMoviesList.pending]: (state) => {
       state.status = "loading";
     },
     [getMoviesList.fulfilled]: (state, { payload }) => {
       state.list = payload;
       state.status = "success";
     },
-    [getMoviesList.rejected]: (state, action) => {
+    [getMoviesList.rejected]: (state) => {
       state.status = "failed";
     },
   },

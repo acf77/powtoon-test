@@ -35,7 +35,6 @@ Replace movie mock data with real data coming from the API of [TMDB](https://www
 Use their “now playing” endpoint (find the API documentation on the TMDB website).
 Please load the first 3 pages of movies from the API when the application starts.
 
-`API_KEY = 54ffed57deb5a7a8688be4de3007e578`
 
 #### TASK 4
 
